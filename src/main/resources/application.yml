@@ -1,0 +1,26 @@
+brobot:
+  core:
+    image-path: images/
+    mock: false
+    max-wait: 10
+  screenshot:
+    save-history: true
+    history-path: history/
+  logging:
+    verbosity: VERBOSE
+  console:
+    actions:
+      enabled: true
+      level: VERBOSE
+  find:
+    similarity: 0.8
+    wait-time: 3.0
+
+spring:
+  application:
+    name: floranext-automation
+
+logging:
+  level:
+    com.example.floranext: DEBUG
+    io.github.jspinak.brobot: INFO
