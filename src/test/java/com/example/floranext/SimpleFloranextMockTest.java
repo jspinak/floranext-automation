@@ -4,6 +4,7 @@ import com.example.floranext.states.HomepageState;
 import com.example.floranext.states.MenuState;
 import com.example.floranext.states.PricingState;
 import io.github.jspinak.brobot.config.core.FrameworkSettings;
+import io.github.jspinak.brobot.config.environment.ExecutionEnvironment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +21,16 @@ public class SimpleFloranextMockTest {
     
     @BeforeEach
     public void setup() {
-        // Enable mock mode
+        // Enable mock mode in both frameworks
         FrameworkSettings.mock = true;
-        FrameworkSettings.screenshotPath = "src/main/resources/images";
+        FrameworkSettings.screenshotPath = "images";
+        
+        // Set mock mode in ExecutionEnvironment as well
+        System.setProperty("brobot.mock.mode", "true");
+        // Create a new ExecutionEnvironment with mock mode enabled
+        ExecutionEnvironment.setInstance(ExecutionEnvironment.builder()
+            .mockMode(true)
+            .build());
         
         // Initialize states
         homepageState = new HomepageState();
@@ -64,7 +72,7 @@ public class SimpleFloranextMockTest {
         System.out.println("=== Testing Mock Mode Configuration ===");
         
         assertTrue(FrameworkSettings.mock, "Mock mode should be enabled");
-        assertEquals("src/main/resources/images", FrameworkSettings.screenshotPath, 
+        assertEquals("images", FrameworkSettings.screenshotPath, 
                     "Screenshot path should be configured");
         
         System.out.println("✓ Mock mode is properly configured");

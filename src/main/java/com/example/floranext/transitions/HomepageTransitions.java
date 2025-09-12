@@ -9,6 +9,7 @@ import io.github.jspinak.brobot.annotations.ToTransition;
 import io.github.jspinak.brobot.annotations.TransitionSet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * All transitions for the Homepage state.
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * and a ToTransition to verify arrival at Homepage.
  */
 @TransitionSet(state = HomepageState.class, description = "Homepage transitions")
+@Component
 @RequiredArgsConstructor
 @Slf4j
 public class HomepageTransitions {

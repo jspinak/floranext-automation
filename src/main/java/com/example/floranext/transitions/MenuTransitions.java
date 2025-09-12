@@ -9,6 +9,7 @@ import io.github.jspinak.brobot.annotations.ToTransition;
 import io.github.jspinak.brobot.annotations.TransitionSet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * All transitions for the Menu state.
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * and a ToTransition to verify arrival at Menu.
  */
 @TransitionSet(state = MenuState.class, description = "Menu navigation transitions")
+@Component
 @RequiredArgsConstructor
 @Slf4j
 public class MenuTransitions {
