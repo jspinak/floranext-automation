@@ -1,9 +1,9 @@
 package com.example.floranext.states;
 
-import io.github.jspinak.brobot.manageStates.StateImage;
-import io.github.jspinak.brobot.manageStates.State;
+import io.github.jspinak.brobot.model.state.StateImage;
+import io.github.jspinak.brobot.annotations.State;
 import lombok.Getter;
-import lombok.Slf4j;
+import lombok.extern.slf4j.Slf4j;
 
 @State
 @Getter

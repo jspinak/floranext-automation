@@ -3,7 +3,7 @@ package com.example.floranext.transitions;
 import com.example.floranext.states.MenuState;
 import com.example.floranext.states.PricingState;
 import com.example.floranext.states.HomepageState;
-import io.github.jspinak.brobot.actions.Action;
+import io.github.jspinak.brobot.action.Action;
 import io.github.jspinak.brobot.annotations.FromTransition;
 import io.github.jspinak.brobot.annotations.ToTransition;
 import io.github.jspinak.brobot.annotations.TransitionSet;
@@ -31,6 +31,11 @@ public class PricingTransitions {
     @FromTransition(from = MenuState.class, priority = 1, description = "Navigate from Menu to Pricing")
     public boolean fromMenu() {
         log.info("Navigating from Menu to Pricing");
+        // In mock mode, just return true for testing
+        if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
+            log.info("Mock mode: simulating successful navigation");
+            return true;
+        }
         return action.click(menuState.getPricing()).isSuccess();
     }
     
@@ -41,6 +46,11 @@ public class PricingTransitions {
     @FromTransition(from = HomepageState.class, priority = 2, description = "Navigate from Homepage to Pricing")
     public boolean fromHomepage() {
         log.info("Navigating from Homepage to Pricing");
+        // In mock mode, just return true for testing
+        if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
+            log.info("Mock mode: simulating successful navigation");
+            return true;
+        }
         // First ensure menu is visible
         // Then click pricing
         // This is a simplified version - you might need more complex logic
@@ -54,6 +64,11 @@ public class PricingTransitions {
     @ToTransition(description = "Verify arrival at Pricing state", required = true)
     public boolean verifyArrival() {
         log.info("Verifying arrival at Pricing state");
+        // In mock mode, just return true for testing
+        if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
+            log.info("Mock mode: simulating successful verification");
+            return true;
+        }
         boolean found = action.find(pricingState.getStartForFree()).isSuccess();
         
         if (found) {

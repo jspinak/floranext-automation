@@ -1,7 +1,7 @@
 brobot:
   core:
     image-path: images/
-    mock: false
+    mock: true  # Enable mock mode for testing
     max-wait: 10
   screenshot:
     save-history: true

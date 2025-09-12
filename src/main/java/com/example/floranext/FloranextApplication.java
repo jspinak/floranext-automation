@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
+@EnableAspectJAutoProxy
 @ComponentScan(basePackages = {
     "com.example.floranext",
     "io.github.jspinak.brobot"
@@ -15,6 +17,9 @@ import org.springframework.context.annotation.ComponentScan;
 public class FloranextApplication {
     
     public static void main(String[] args) {
+        // Set system properties for proper initialization
+        System.setProperty("java.awt.headless", "false");
+        
         // Configure Spring Boot for GUI automation (not headless)
         SpringApplicationBuilder builder = new SpringApplicationBuilder(FloranextApplication.class);
         builder.headless(false);

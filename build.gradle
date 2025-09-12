@@ -15,13 +15,19 @@ configurations {
 }
 
 repositories {
+    mavenLocal()  // Add local Maven repository first
     mavenCentral()
     maven { url 'https://jitpack.io' }
+    maven { url 'https://repo1.maven.org/maven2' }  // Ensure Maven Central is accessible
 }
 
 dependencies {
-    // Brobot framework
-    implementation 'io.github.jspinak:brobot:1.1.0'
+    // Brobot framework - using local version
+    // Platform dependencies (javacv, opencv, ffmpeg) come transitively from Brobot's API dependencies
+    implementation('io.github.jspinak:brobot:1.1.0') {
+        // Exclude problematic transitive dependencies
+        exclude group: 'com.github.jnr', module: 'jffi'
+    }
     
     // Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter'
@@ -41,4 +47,19 @@ test {
 
 springBoot {
     mainClass = 'com.example.floranext.FloranextApplication'
+}
+
+// Configure bootRun for proper native library loading
+bootRun {
+    // Set JVM arguments for native library loading and DPI settings
+    jvmArgs = [
+        '-Dorg.bytedeco.javacpp.logger.debug=false',  // Set to true for debugging native library loading
+        '-Djava.awt.headless=false',  // Ensure GUI support
+        '-Dbrobot.dpi.disable=true',
+        '-Dsun.java2d.dpiaware=false',
+        '-Dsun.java2d.uiScale=1.0'
+    ]
+    
+    // Environment variables
+    environment 'BROBOT_DISABLE_DPI', 'true'
 }

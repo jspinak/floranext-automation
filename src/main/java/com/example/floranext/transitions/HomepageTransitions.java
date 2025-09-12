@@ -3,9 +3,7 @@ package com.example.floranext.transitions;
 import com.example.floranext.states.MenuState;
 import com.example.floranext.states.PricingState;
 import com.example.floranext.states.HomepageState;
-import io.github.jspinak.brobot.actions.Action;
-import io.github.jspinak.brobot.actions.actionConfig.ConditionalActionChain;
-import io.github.jspinak.brobot.collection.StateImageCollection;
+import io.github.jspinak.brobot.action.Action;
 import io.github.jspinak.brobot.annotations.FromTransition;
 import io.github.jspinak.brobot.annotations.ToTransition;
 import io.github.jspinak.brobot.annotations.TransitionSet;
@@ -33,6 +31,11 @@ public class HomepageTransitions {
     @FromTransition(from = MenuState.class, priority = 1, description = "Navigate from Menu to Homepage")
     public boolean fromMenu() {
         log.info("Navigating from Menu to Homepage");
+        // In mock mode, just return true for testing
+        if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
+            log.info("Mock mode: simulating successful navigation");
+            return true;
+        }
         return action.click(menuState.getFloranextIcon()).isSuccess();
     }
     
@@ -43,6 +46,11 @@ public class HomepageTransitions {
     @FromTransition(from = PricingState.class, priority = 2, description = "Navigate from Pricing to Homepage")
     public boolean fromPricing() {
         log.info("Navigating from Pricing to Homepage");
+        // In mock mode, just return true for testing
+        if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
+            log.info("Mock mode: simulating successful navigation");
+            return true;
+        }
         // Assuming we can click the Floranext icon from pricing page
         // You might need to add navigation elements to PricingState
         return action.click(menuState.getFloranextIcon()).isSuccess();
@@ -56,22 +64,17 @@ public class HomepageTransitions {
     @ToTransition(description = "Verify arrival at Homepage state", required = true)
     public boolean verifyArrival() {
         log.info("Verifying arrival at Homepage state");
+        // In mock mode, just return true for testing
+        if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
+            log.info("Mock mode: simulating successful verification");
+            return true;
+        }
         
-        // Create a collection with both homepage elements
-        StateImageCollection homepageElements = new StateImageCollection.Builder()
-            .addStateImages(
-                homepageState.getStartForFreeBig(),
-                homepageState.getEnterYourEmail()
-            )
-            .build();
+        // Check for either homepage element
+        boolean foundBigButton = action.find(homepageState.getStartForFreeBig()).isSuccess();
+        boolean foundEmailField = action.find(homepageState.getEnterYourEmail()).isSuccess();
         
-        // Use ConditionalActionChain to find either element
-        boolean found = ConditionalActionChain
-            .findAny(homepageElements)
-            .perform(action, homepageElements)
-            .isSuccess();
-            
-        if (found) {
+        if (foundBigButton || foundEmailField) {
             log.info("Successfully confirmed Homepage state is active");
             return true;
         } else {

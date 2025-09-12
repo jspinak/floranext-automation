@@ -1,11 +1,11 @@
 package com.example.floranext.states;
 
-import io.github.jspinak.brobot.manageStates.StateImage;
-import io.github.jspinak.brobot.manageStates.State;
+import io.github.jspinak.brobot.model.state.StateImage;
+import io.github.jspinak.brobot.annotations.State;
 import lombok.Getter;
-import lombok.Slf4j;
+import lombok.extern.slf4j.Slf4j;
 
-@State(initial = true)
+@State(initial = true, priority = 100)
 @Getter
 @Slf4j
 public class MenuState {
