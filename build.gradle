@@ -15,19 +15,17 @@ configurations {
 }
 
 repositories {
-    mavenLocal()  // Add local Maven repository first
     mavenCentral()
     maven { url 'https://jitpack.io' }
     maven { url 'https://repo1.maven.org/maven2' }  // Ensure Maven Central is accessible
 }
 
 dependencies {
-    // Brobot framework - using local version
+    // Brobot framework - using local project via composite build
+    // This dependency is substituted with the local :library project from ../brobot
+    // See settings.gradle for the composite build configuration
     // Platform dependencies (javacv, opencv, ffmpeg) come transitively from Brobot's API dependencies
-    implementation('io.github.jspinak:brobot:1.1.0') {
-        // Exclude problematic transitive dependencies
-        exclude group: 'com.github.jnr', module: 'jffi'
-    }
+    implementation 'io.github.jspinak:brobot:1.1.0'
     
     // Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter'
