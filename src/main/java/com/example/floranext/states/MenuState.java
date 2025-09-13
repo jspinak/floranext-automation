@@ -14,7 +14,7 @@ public class MenuState {
     private final StateImage pricing;
     
     public MenuState() {
-        log.info("Initializing MenuState");
+        log.info("Initializing MenuState with lower similarity thresholds for better matching");
         
         homepage = new StateImage.Builder()
             .addPatterns("menu/menu-homepage")
