@@ -16,7 +16,7 @@ public class PricingState {
         log.info("Initializing PricingState");
         
         startForFree = new StateImage.Builder()
-            .addPatterns("pricing/pricing-start_for_free")
+            .addPatterns("pricing/pricing-start-for-free")
             .setName("Start For Free Button")
             .build();
     }

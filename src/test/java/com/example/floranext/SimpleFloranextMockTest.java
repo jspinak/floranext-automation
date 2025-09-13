@@ -50,7 +50,7 @@ public class SimpleFloranextMockTest {
         // Test that state images are properly configured
         assertNotNull(homepageState.getStartForFreeBig(), "Homepage should have startForFreeBig image");
         assertNotNull(homepageState.getEnterYourEmail(), "Homepage should have enterYourEmail field");
-        assertNotNull(menuState.getFloranextIcon(), "Menu should have floranext icon");
+        assertNotNull(menuState.getHomepage(), "Menu should have floranext icon");
         assertNotNull(menuState.getPricing(), "Menu should have pricing option");
         assertNotNull(pricingState.getStartForFree(), "Pricing should have start for free button");
         

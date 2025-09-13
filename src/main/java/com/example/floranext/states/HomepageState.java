@@ -9,20 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @Slf4j
 public class HomepageState {
-    
-    private final StateImage startForFreeBig;
+
     private final StateImage enterYourEmail;
     
     public HomepageState() {
         log.info("Initializing HomepageState");
-        
-        startForFreeBig = new StateImage.Builder()
-            .addPatterns("homepage/start_for_free_big")
-            .setName("Start For Free Big Button")
-            .build();
             
         enterYourEmail = new StateImage.Builder()
-            .addPatterns("homepage/enter_your_email")
+            .addPatterns("homepage/homepage-enter-email")
             .setName("Enter Your Email Field")
             .build();
     }

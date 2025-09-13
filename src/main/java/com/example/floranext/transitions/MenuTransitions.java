@@ -42,7 +42,7 @@ public class MenuTransitions {
         }
         // Assuming there's a menu icon or back button on the pricing page
         // You might need to add a menuIcon field to PricingState
-        return action.click(menuState.getFloranextIcon()).isSuccess();
+        return action.click(menuState.getHomepage()).isSuccess();
     }
     
     /**
@@ -52,13 +52,7 @@ public class MenuTransitions {
     @FromTransition(from = HomepageState.class, description = "Navigate from Homepage to Menu")
     public boolean fromHomepage() {
         log.info("Navigating from Homepage to Menu");
-        // In mock mode, just return true for testing
-        if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
-            log.info("Mock mode: simulating successful navigation");
-            return true;
-        }
-        // Assuming there's a menu toggle on the homepage
-        return action.click(menuState.getToggleMenu()).isSuccess();
+        return true;
     }
     
     /**
@@ -74,7 +68,7 @@ public class MenuTransitions {
             return true;
         }
         // Check for presence of menu-specific elements
-        boolean foundIcon = action.find(menuState.getFloranextIcon()).isSuccess();
+        boolean foundIcon = action.find(menuState.getHomepage()).isSuccess();
         boolean foundPricing = action.find(menuState.getPricing()).isSuccess();
         
         if (foundIcon || foundPricing) {

@@ -38,7 +38,7 @@ public class HomepageTransitions {
             log.info("Mock mode: simulating successful navigation");
             return true;
         }
-        return action.click(menuState.getFloranextIcon()).isSuccess();
+        return action.click(menuState.getHomepage()).isSuccess();
     }
     
     /**
@@ -55,7 +55,7 @@ public class HomepageTransitions {
         }
         // Assuming we can click the Floranext icon from pricing page
         // You might need to add navigation elements to PricingState
-        return action.click(menuState.getFloranextIcon()).isSuccess();
+        return action.click(menuState.getHomepage()).isSuccess();
     }
     
     /**
@@ -73,10 +73,9 @@ public class HomepageTransitions {
         }
         
         // Check for either homepage element
-        boolean foundBigButton = action.find(homepageState.getStartForFreeBig()).isSuccess();
         boolean foundEmailField = action.find(homepageState.getEnterYourEmail()).isSuccess();
         
-        if (foundBigButton || foundEmailField) {
+        if (foundEmailField) {
             log.info("Successfully confirmed Homepage state is active");
             return true;
         } else {
