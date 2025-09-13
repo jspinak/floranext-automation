@@ -54,7 +54,7 @@ public class FloranextAutomationRunner {
         // Step 1: Navigate to pricing page using Brobot's navigation system
         // Note: StateNavigator doesn't support custom options, so we keep manual logging for navigation
         log.info("Step 1: Navigating to pricing page");
-        if (!stateNavigator.openState("PricingState")) {
+        if (!stateNavigator.openState("Pricing")) {
             log.error("Failed to navigate to pricing page");
             return false;
         }
@@ -79,7 +79,7 @@ public class FloranextAutomationRunner {
         // Step 3: Navigate to homepage using Brobot's navigation system
         // Note: StateNavigator doesn't support custom options, so we keep manual logging for navigation
         log.info("Step 3: Navigating to homepage");
-        if (!stateNavigator.openState("HomepageState")) {
+        if (!stateNavigator.openState("Homepage")) {
             log.error("Failed to navigate to homepage");
             return false;
         }
