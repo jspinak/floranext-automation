@@ -103,8 +103,8 @@ public class AutomationLogicTest {
                       "fromHomepage should have @FromTransition annotation");
             
             var verifyArrivalMethod = PricingTransitions.class.getMethod("verifyArrival");
-            assertTrue(verifyArrivalMethod.isAnnotationPresent(io.github.jspinak.brobot.annotations.ToTransition.class),
-                      "verifyArrival should have @ToTransition annotation");
+            assertTrue(verifyArrivalMethod.isAnnotationPresent(io.github.jspinak.brobot.annotations.IncomingTransition.class),
+                      "verifyArrival should have @IncomingTransition annotation");
                       
             System.out.println("✓ All transition methods have correct annotations");
             
