@@ -38,6 +38,7 @@ public class HomepageTransitions {
             log.info("Mock mode: simulating successful navigation");
             return true;
         }
+        // action.click() now properly performs find-then-click for StateImages
         return action.click(menuState.getHomepage()).isSuccess();
     }
     
@@ -53,8 +54,8 @@ public class HomepageTransitions {
             log.info("Mock mode: simulating successful navigation");
             return true;
         }
+        // action.click() now properly performs find-then-click for StateImages
         // Assuming we can click the Floranext icon from pricing page
-        // You might need to add navigation elements to PricingState
         return action.click(menuState.getHomepage()).isSuccess();
     }
     

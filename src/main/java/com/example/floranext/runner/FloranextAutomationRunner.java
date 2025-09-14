@@ -4,7 +4,6 @@ import com.example.floranext.states.HomepageState;
 import com.example.floranext.states.PricingState;
 import io.github.jspinak.brobot.action.Action;
 import io.github.jspinak.brobot.action.ActionResult;
-import io.github.jspinak.brobot.action.basic.click.ClickOptions;
 import io.github.jspinak.brobot.navigation.transition.StateNavigator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -60,20 +59,18 @@ public class FloranextAutomationRunner {
         }
         log.info("Successfully navigated to pricing state");
 
-        // Step 2: Click on start for free button on pricing page with embedded logging
+        // Step 2: Click on start for free button on pricing page
         if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
             log.info("Mock mode: Simulating click on start for free button");
         } else {
-            ClickOptions pricingClickOptions = new ClickOptions.Builder()
-                    .withBeforeActionLog("Step 2: Clicking start for free button on pricing page")
-                    .withSuccessLog("Successfully clicked start for free button on pricing page")
-                    .withFailureLog("Failed to click start for free button on pricing page")
-                    .build();
-
-            ActionResult pricingClick = action.perform(pricingClickOptions, pricingState.getStartForFree());
+            log.info("Step 2: Clicking start for free button on pricing page");
+            // action.click() now properly performs find-then-click for StateImages
+            ActionResult pricingClick = action.click(pricingState.getStartForFree());
             if (!pricingClick.isSuccess()) {
+                log.error("Failed to click start for free button on pricing page");
                 return false;
             }
+            log.info("Successfully clicked start for free button on pricing page");
         }
 
         // Step 3: Navigate to homepage using Brobot's navigation system
@@ -85,20 +82,18 @@ public class FloranextAutomationRunner {
         }
         log.info("Successfully navigated to homepage state");
 
-        // Step 4: Click on enter your email field with embedded logging
+        // Step 4: Click on enter your email field
         if (io.github.jspinak.brobot.config.core.FrameworkSettings.mock) {
             log.info("Mock mode: Simulating click on email field");
         } else {
-            ClickOptions emailClickOptions = new ClickOptions.Builder()
-                    .withBeforeActionLog("Step 4: Clicking enter your email field")
-                    .withSuccessLog("Successfully clicked enter your email field")
-                    .withFailureLog("Failed to click enter your email field")
-                    .build();
-
-            ActionResult emailClick = action.perform(emailClickOptions, homepageState.getEnterYourEmail());
+            log.info("Step 4: Clicking enter your email field");
+            // action.click() now properly performs find-then-click for StateImages
+            ActionResult emailClick = action.click(homepageState.getEnterYourEmail());
             if (!emailClick.isSuccess()) {
+                log.error("Failed to click enter your email field");
                 return false;
             }
+            log.info("Successfully clicked enter your email field");
         }
 
         log.info("Automation sequence completed successfully!");

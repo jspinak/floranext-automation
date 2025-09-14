@@ -38,6 +38,7 @@ public class PricingTransitions {
             log.info("Mock mode: simulating successful navigation");
             return true;
         }
+        // action.click() now properly performs find-then-click for StateImages
         return action.click(menuState.getPricing()).isSuccess();
     }
     
@@ -53,9 +54,8 @@ public class PricingTransitions {
             log.info("Mock mode: simulating successful navigation");
             return true;
         }
-        // First ensure menu is visible
-        // Then click pricing
-        // This is a simplified version - you might need more complex logic
+        // action.click() now properly performs find-then-click for StateImages
+        // First ensure menu is visible, then click pricing
         return action.click(menuState.getPricing()).isSuccess();
     }
     
